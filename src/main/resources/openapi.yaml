@@ -1,0 +1,48 @@
+openapi: 3.0.2
+info:
+  title: New API
+  version: 1.0.0
+  description: web client api
+paths:
+  /web_pages:
+    summary: Path used to manage the list of web_pages.
+    description: >-
+      The REST endpoint/path used to list and create zero or more `web_page` entities.  This path
+      contains a `GET` and `POST` operation to perform the list and create tasks, respectively.
+    post:
+      requestBody:
+        description: A new `web_page` to be created.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/web_page'
+        required: true
+      responses:
+        '200':
+          description: Successful response.
+      operationId: createweb_page
+      summary: Create a web_page
+      description: Creates a new instance of a `web_page`.
+components:
+  schemas:
+    web_page:
+      title: Root Type for web_page
+      description: ''
+      type: object
+      properties:
+        host:
+          type: string
+          format: hostname
+          example: localhost
+        port:
+          type: integer
+          example: 123456
+          minimum: 0
+          maximum: 65535
+        ssl:
+          type: boolean
+          example: true
+        uri:
+          type: string
+          example: /
+
